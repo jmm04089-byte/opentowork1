@@ -1,0 +1,410 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Open to Work</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300..800&display=swap">
+<style>
+/* Layout: airy white one-pager with black bands, pill labels and buttons, hairline rules, thin orbit rings in the hero. Pure black and white, one orbiting dot is the only motion. */
+:root {
+  --white: #fafafa;
+  --pure: #ffffff;
+  --black: #0b0b0c;
+  --card-dark: #141415;
+  --bg: var(--white);
+  --fg: var(--black);
+  --muted: #5f5f63;
+  --rule: #e1e1e1;
+  --card: var(--pure);
+  --font: "Albert Sans", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--white);
+}
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font); margin: 0; text-wrap: balance; overflow-wrap: break-word; }
+h1, h2 { font-weight: 500; letter-spacing: -0.035em; line-height: 1.04; }
+h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+.band { background: var(--bg); color: var(--fg); padding-block: clamp(64px, 9vw, 120px); }
+.band.dark { --bg: var(--black); --fg: var(--white); --muted: #a1a1a6; --rule: #2a2a2c; --card: var(--card-dark); }
+.wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 7px 15px; border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--card); color: var(--muted);
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--fg); }
+.h2 { font-size: clamp(2rem, 5vw, 3.7rem); }
+.lead { font-size: clamp(1.05rem, 1.5vw, 1.2rem); font-weight: 300; color: var(--muted); max-width: 60ch; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 26px; border-radius: 999px;
+  font-family: var(--font); font-size: 0.95rem; font-weight: 600; text-decoration: none;
+  background: var(--fg); color: var(--bg); border: 1px solid var(--fg);
+  transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--rule); }
+.btn.ghost:hover { border-color: var(--fg); }
+a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 6px; }
+
+/* header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--white); border-bottom: 1px solid var(--rule); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; }
+.brand { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; text-decoration: none; display: flex; align-items: center; gap: 9px; }
+.brand i { width: 11px; height: 11px; border-radius: 50%; background: var(--black); display: inline-block; }
+.nav { display: none; gap: 30px; }
+.nav a { font-size: 0.92rem; font-weight: 500; text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--black); }
+.top .btn { padding: 10px 20px; font-size: 0.88rem; }
+@media (min-width: 860px) { .nav { display: flex; } }
+
+/* hero */
+.hero { position: relative; overflow: hidden; padding-block: clamp(56px, 9vw, 120px) clamp(64px, 8vw, 112px); }
+.hero .wrap { position: relative; z-index: 2; }
+.hero h1 { font-size: clamp(2.5rem, 6.6vw, 5.2rem); max-width: 15ch; margin-top: 26px; }
+.hero .lead { margin-top: 28px; max-width: 46ch; color: #3a3a3d; }
+.hero .chip { display: inline-block; margin-top: 32px; padding: 4px 9px; background: #ededed; font-size: 0.74rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: #3a3a3d; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.glow { position: absolute; z-index: 0; right: -220px; top: 50%; width: 620px; height: 620px; transform: translateY(-50%); background: radial-gradient(circle, rgba(11,11,12,0.13), rgba(11,11,12,0) 66%); pointer-events: none; }
+.arcs { position: absolute; z-index: 1; right: -330px; top: 50%; width: 900px; height: 900px; transform: translateY(-50%); pointer-events: none; }
+.arcs g.orbit { transform-box: view-box; transform-origin: 400px 400px; animation: spin 48s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 760px) { .arcs { opacity: 0.45; right: -520px; } .glow { opacity: 0.6; } }
+
+/* ticker */
+.ticker { background: var(--pure); overflow: hidden; border-block: 1px solid var(--rule); }
+.ticker .track { display: flex; width: max-content; animation: slide 42s linear infinite; }
+.ticker span { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 22px 0; white-space: nowrap; display: flex; align-items: center; }
+.ticker span::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--black); margin: 0 40px; }
+@keyframes slide { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .ticker .track { animation: none; flex-wrap: wrap; width: auto; padding-left: 16px; }
+  .arcs g.orbit { animation: none; }
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
+
+/* about */
+.split { display: grid; gap: 32px; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .split { grid-template-columns: 5fr 7fr; gap: 72px; } }
+.about .copy { display: grid; gap: 22px; }
+.about .copy p { font-weight: 300; font-size: 1.12rem; color: var(--muted); }
+.about .copy p.big { font-weight: 500; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -0.025em; line-height: 1.2; color: var(--fg); }
+
+/* audience */
+.panels { display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 48px; }
+@media (min-width: 760px) { .panels { grid-template-columns: 1fr 1fr; } }
+.panel { background: var(--card); border: 1px solid var(--rule); border-radius: 24px; padding: clamp(26px, 4vw, 44px); display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.panel h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.panel .sub { color: var(--muted); font-weight: 300; }
+.ticks li { display: flex; gap: 14px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--rule); }
+.ticks li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--fg); transform: translateY(-2px); }
+.note { margin-top: 32px; color: var(--muted); font-weight: 300; max-width: 80ch; }
+
+/* services */
+.grid { display: grid; gap: 16px; margin-top: 48px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+.card { background: var(--card); border: 1px solid var(--rule); border-radius: 22px; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 14px; min-width: 0; min-height: 240px; transition: transform 0.2s, border-color 0.2s; }
+.card:hover { transform: translateY(-4px); border-color: var(--fg); }
+.card h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); margin-top: auto; }
+.card p { color: var(--muted); font-weight: 300; }
+
+/* process: a real sequence, so numbered */
+.steps { display: grid; grid-template-columns: 1fr; margin-top: 48px; border-top: 1px solid var(--rule); }
+.step { padding: 24px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 6px 24px; grid-template-columns: 56px 1fr; align-items: baseline; }
+.step .n { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; color: var(--muted); grid-row: span 2; }
+.step h3 { font-size: 1.3rem; }
+.step p { color: var(--muted); font-weight: 300; }
+@media (min-width: 1000px) {
+  .steps { grid-template-columns: repeat(5, 1fr); }
+  .step { display: flex; flex-direction: column; gap: 14px; padding: 28px 24px 8px 0; border-bottom: 0; border-right: 1px solid var(--rule); }
+  .step:not(:first-child) { padding-left: 24px; }
+  .step:last-child { border-right: 0; }
+  .step .n { font-size: 2.8rem; font-weight: 500; letter-spacing: -0.04em; color: var(--fg); }
+}
+
+/* why */
+.why li { display: flex; gap: 18px; align-items: center; padding: 22px 0; border-top: 1px solid var(--rule); font-weight: 500; font-size: clamp(1.15rem, 2.2vw, 1.55rem); letter-spacing: -0.02em; line-height: 1.25; }
+.why li:last-child { border-bottom: 1px solid var(--rule); }
+.why li::before { content: "\2713"; flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--fg); display: grid; place-items: center; font-size: 0.85rem; }
+
+/* pricing */
+.price-grid { display: grid; gap: 24px; grid-template-columns: 1fr; margin-top: 48px; }
+@media (min-width: 900px) { .price-grid { grid-template-columns: 5fr 7fr; gap: 32px; } }
+.price-card { background: var(--white); color: var(--black); border-radius: 28px; padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; gap: 16px; min-width: 0; align-self: start; }
+.price-card .label { color: #5f5f63; }
+.price-card .amount { font-weight: 500; font-size: clamp(3.2rem, 9vw, 5.6rem); line-height: 1; letter-spacing: -0.045em; }
+.price-card .per { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #5f5f63; }
+.price-card p { color: #5f5f63; font-weight: 300; border-top: 1px solid #dcdcdc; padding-top: 16px; }
+.price-info { display: grid; gap: 36px; min-width: 0; align-content: start; }
+.price-info h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.price-info .ticks li { padding: 10px 0; font-weight: 300; }
+.closer { margin-top: 36px; font-weight: 500; font-size: 1.1rem; max-width: 60ch; }
+
+/* contact */
+.contact h2 { font-size: clamp(2.8rem, 10.5vw, 8.4rem); letter-spacing: -0.05em; line-height: 0.96; margin-top: 24px; }
+.contact .lead { margin-top: 28px; color: #3a3a3d; }
+.contact .actions { margin-top: 32px; }
+.rows { margin-top: 56px; border-top: 1px solid var(--rule); max-width: 760px; }
+.row { display: grid; grid-template-columns: 1fr; gap: 4px 24px; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+@media (min-width: 600px) { .row { grid-template-columns: 200px 1fr; align-items: baseline; } }
+.row .val { font-weight: 500; font-size: 1.25rem; letter-spacing: -0.015em; color: var(--muted); overflow-wrap: anywhere; }
+
+footer { background: var(--black); color: #a1a1a6; padding-block: 30px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 0.85rem; }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><i></i>Open to Work</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#who">Clients</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="btn" href="#contact">Contact &rarr;</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="band hero">
+    <div class="glow" aria-hidden="true"></div>
+    <svg class="arcs" viewBox="0 0 800 800" aria-hidden="true">
+      <circle cx="400" cy="400" r="398" fill="none" stroke="#dedede" stroke-width="1.2"/>
+      <circle cx="400" cy="400" r="300" fill="none" stroke="#dedede" stroke-width="1.2"/>
+      <circle cx="400" cy="400" r="200" fill="none" stroke="#dedede" stroke-width="1.2"/>
+      <circle cx="400" cy="400" r="14" fill="#0b0b0c"/>
+      <g class="orbit"><circle cx="400" cy="100" r="8" fill="#0b0b0c"/></g>
+    </svg>
+    <div class="wrap">
+      <span class="pill">B2B + B2C Digital Marketing Agency</span>
+      <h1>Turning marketing investments into measurable business growth.</h1>
+      <p class="lead">We help businesses generate qualified leads, acquire customers and grow revenue through strategic digital marketing.</p>
+      <span class="chip">Performance-led. Data-driven. Growth-focused.</span>
+      <div class="actions">
+        <a class="btn" href="#contact">Start a conversation &rarr;</a>
+        <a class="btn ghost" href="#pricing">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="track">
+      <span>Meta Ads</span><span>Google Ads</span><span>LinkedIn Ads</span><span>SEO &amp; Content</span><span>Landing Pages</span><span>Analytics &amp; Tracking</span>
+      <span>Meta Ads</span><span>Google Ads</span><span>LinkedIn Ads</span><span>SEO &amp; Content</span><span>Landing Pages</span><span>Analytics &amp; Tracking</span>
+    </div>
+  </div>
+
+  <section class="band about" id="about">
+    <div class="wrap split">
+      <div>
+        <span class="pill">About</span>
+        <h2 class="h2" style="margin-top:22px">Who we are</h2>
+      </div>
+      <div class="copy">
+        <p class="big">Our focus goes beyond clicks and impressions.</p>
+        <p>Open to Work is a performance-driven digital marketing agency helping businesses grow through strategic marketing, customer acquisition and data-led advertising. We work with both B2B and B2C businesses, building campaigns around each organisation's goals, audience and growth requirements.</p>
+        <p>We aim to generate qualified leads, acquire customers and help businesses understand the commercial impact of their marketing investments.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" id="who">
+    <div class="wrap">
+      <span class="pill">Who we work with</span>
+      <h2 class="h2" style="margin-top:22px;max-width:18ch">One agency. Two business models.</h2>
+      <div class="panels">
+        <div class="panel">
+          <span class="label">B2B / Business to business</span>
+          <h3>Pipeline and decision-makers</h3>
+          <p class="sub">We help businesses reach decision-makers, generate qualified enquiries and build a stronger sales pipeline.</p>
+          <ul class="ticks">
+            <li>SaaS &amp; software companies</li>
+            <li>IT &amp; technology businesses</li>
+            <li>Consulting &amp; professional services</li>
+            <li>Recruitment &amp; business services</li>
+            <li>Corporate &amp; industrial businesses</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <span class="label">B2C / Business to consumer</span>
+          <h3>Sales and customer acquisition</h3>
+          <p class="sub">We help consumer-facing brands increase product sales, enquiries and customer acquisition.</p>
+          <ul class="ticks">
+            <li>E-commerce &amp; D2C brands</li>
+            <li>Beauty &amp; wellness</li>
+            <li>Fashion &amp; lifestyle</li>
+            <li>Interior design &amp; real estate</li>
+            <li>Solar &amp; education</li>
+            <li>Healthcare &amp; local services</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Our approach is tailored to the business model: B2B campaigns prioritise qualified opportunities and pipeline, while B2C campaigns focus on customer acquisition, sales and repeat purchases.</p>
+    </div>
+  </section>
+
+  <section class="band" id="services">
+    <div class="wrap">
+      <span class="pill">Our services</span>
+      <h2 class="h2" style="margin-top:22px;max-width:20ch">Everything from discovery to conversion.</h2>
+      <p class="lead" style="margin-top:22px">A connected set of digital marketing services designed to support the full customer journey.</p>
+      <div class="grid">
+        <article class="card">
+          <span class="label">Paid social</span>
+          <h3>Meta Ads</h3>
+          <p>Facebook and Instagram campaign strategy, lead generation, sales campaigns, audience testing and retargeting.</p>
+        </article>
+        <article class="card">
+          <span class="label">Paid search</span>
+          <h3>Google Ads</h3>
+          <p>Search, Display, YouTube and Performance Max campaigns to capture demand and reach relevant audiences.</p>
+        </article>
+        <article class="card">
+          <span class="label">B2B paid</span>
+          <h3>LinkedIn Ads</h3>
+          <p>B2B audience strategy, professional targeting, lead generation and campaigns to reach business decision-makers.</p>
+        </article>
+        <article class="card">
+          <span class="label">Organic</span>
+          <h3>SEO &amp; Content Marketing</h3>
+          <p>Keyword research, search visibility, content planning and organic growth foundations.</p>
+        </article>
+        <article class="card">
+          <span class="label">Conversion</span>
+          <h3>Landing Page Optimisation</h3>
+          <p>Conversion-focused page recommendations, user journey improvements and lead-form optimisation.</p>
+        </article>
+        <article class="card">
+          <span class="label">Measurement</span>
+          <h3>Analytics &amp; Tracking</h3>
+          <p>GA4, Google Tag Manager, Meta Pixel, conversion tracking, UTM standards and performance reporting.</p>
+        </article>
+      </div>
+      <p class="note">Service scope: the exact deliverables, platforms, campaign volume and reporting requirements are confirmed during the discovery and proposal stage.</p>
+    </div>
+  </section>
+
+  <section class="band dark" id="process">
+    <div class="wrap">
+      <span class="pill">How we work</span>
+      <h2 class="h2" style="margin-top:22px;max-width:20ch">A clear, collaborative process.</h2>
+      <p class="lead" style="margin-top:22px">Five steps keep campaigns aligned with your business objectives.</p>
+      <ol class="steps">
+        <li class="step"><span class="n">01</span><h3>Understand</h3><p>Learn about your business, goals, offer, audience and sales process.</p></li>
+        <li class="step"><span class="n">02</span><h3>Research &amp; Plan</h3><p>Review the market, competitors, customer journey and campaign opportunities.</p></li>
+        <li class="step"><span class="n">03</span><h3>Launch</h3><p>Set up the agreed campaigns, audiences, creatives and conversion tracking.</p></li>
+        <li class="step"><span class="n">04</span><h3>Optimise</h3><p>Monitor results, test improvements and make data-informed adjustments.</p></li>
+        <li class="step"><span class="n">05</span><h3>Report &amp; Grow</h3><p>Review performance, lead quality and sales outcomes, then plan the next steps.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band why">
+    <div class="wrap split">
+      <div>
+        <span class="pill">Why Open to Work?</span>
+        <h2 class="h2" style="margin-top:22px">What you can expect</h2>
+      </div>
+      <ul>
+        <li>Separate strategies for B2B and B2C business models.</li>
+        <li>Performance-focused campaign planning and management.</li>
+        <li>Audience research and competitor analysis.</li>
+        <li>Tracking-led optimisation and transparent reporting.</li>
+        <li>Continuous testing and improvement based on results.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band dark" id="pricing">
+    <div class="wrap">
+      <span class="pill">Pricing &amp; engagement</span>
+      <h2 class="h2" style="margin-top:22px">Starter plan</h2>
+      <p class="lead" style="margin-top:22px">A practical starting point for businesses looking to build or improve their digital marketing performance.</p>
+      <div class="price-grid">
+        <div class="price-card">
+          <span class="label">Starting from</span>
+          <div class="amount">&#8377;20,000</div>
+          <div class="per">Per month onwards</div>
+          <p>The starting agency service and management fee. Final pricing depends on the platforms, campaign scope and deliverables you need.</p>
+        </div>
+        <div class="price-info">
+          <div>
+            <h3>Starter engagement may include</h3>
+            <ul class="ticks">
+              <li>Digital marketing strategy and campaign planning</li>
+              <li>Paid advertising campaign management</li>
+              <li>Audience research and targeting</li>
+              <li>Campaign monitoring and optimisation</li>
+              <li>Performance reporting</li>
+              <li>Conversion tracking review</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Important pricing notes</h3>
+            <ul class="ticks">
+              <li>&#8377;20,000/month is the starting agency service/management fee.</li>
+              <li>Advertising media spend is separate and paid by the client directly to the advertising platforms.</li>
+              <li>Creative production, website or landing-page development, software subscriptions and other third-party costs are excluded unless specifically included in the agreed scope.</li>
+              <li>Final pricing depends on the required platforms, campaign scope, deliverables and business requirements.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="closer">Every engagement begins with a discussion to understand the business, define priorities and recommend a suitable scope.</p>
+    </div>
+  </section>
+
+  <section class="band contact" id="contact">
+    <div class="wrap">
+      <span class="pill">Contact us</span>
+      <h2>Let's grow together.</h2>
+      <p class="lead">Your business goals deserve a focused marketing strategy.</p>
+      <div class="rows">
+        <div class="row"><span class="label">Email</span><span class="val" style="color:var(--fg)">opentowork@gmail.com</span></div>
+        <div class="row"><span class="label">Phone / WhatsApp</span><span class="val" style="color:var(--fg)">+91 628212036</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Open to Work &middot; B2B + B2C Digital Marketing Agency</span>
+    <span>Performance-led. Data-driven. Growth-focused.</span>
+  </div>
+</footer>
+
+</body></html>
